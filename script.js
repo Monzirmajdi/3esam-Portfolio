@@ -502,5 +502,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize floating elements
     createFloatingElements();
+
+    // تحسينات الأداء (Lazy Loading + Loader)
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        });
+    }, { rootMargin: '200px' }); // تحميل الصور قبل ظهورها بــ 200px
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+
+    // مؤشر التحميل
+    window.addEventListener('load', function() {
+        const loader = document.createElement('div');
+        loader.className = 'page-loader';
+        loader.innerHTML = `
+            <div class="loader-content">
+                <div class="loader-spinner"></div>
+                <div class="loader-logo">✦ Esam</div>
+            </div>
+        `;
+        document.body.appendChild(loader);
+        
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 500);
+        }, 1000);
+    });
+
+    // تأثيرات Hover المتقدمة
+    document.querySelectorAll('.portfolio-item, .action-btn, .social-link').forEach(el => {
+        el.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            this.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+            this.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+    });
+
 });
 
