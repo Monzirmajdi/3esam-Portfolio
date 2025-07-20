@@ -368,109 +368,6 @@ body {
     stroke: currentColor;
 }
 
-/* Testimonials Section */
-.testimonials-section {
-    margin: 0 auto; /* توسيط أفقي */
-    max-width: 800px; /* تحديد عرض ثابت للقسم */
-    width: 90%; /* عرض متجاوب */
-    position: relative;
-    text-align: center; /* توسيط النص داخليًا */
-}
-
-.testimonials-container {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-}
-
-.testimonial-card {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    max-width: 90%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s ease;
-    backdrop-filter: blur(10px);
-}
-
-.testimonial-card.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.stars {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 20px;
-}
-
-.star {
-    color: #00ff88;
-    font-size: 20px;
-}
-
-.testimonial-text {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: #ccc;
-    font-style: italic;
-}
-
-.client-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-.client-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid #00ff88;
-}
-
-.client-details h4 {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.client-details p {
-    color: #888;
-    font-size: 14px;
-}
-
-.testimonial-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 40px;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dot.active {
-    background: #00ff88;
-}
 
 /* Bottom Section */
 .bottom-section {
@@ -1049,5 +946,91 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
 
 img {
     content-visibility: auto;
+}
+
+
+
+/* التنسيق الأساسي */
+.testimonial-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    margin: 50px 0;
+}
+
+.testimonial-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.testimonial-quote {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #eee;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 0 20px;
+}
+
+.testimonial-quote::before,
+.testimonial-quote::after {
+    content: '"';
+    font-size: 3rem;
+    color: #00ff88;
+    opacity: 0.3;
+    position: absolute;
+}
+
+.testimonial-quote::before {
+    left: -10px;
+    top: -20px;
+}
+
+.testimonial-quote::after {
+    right: -10px;
+    bottom: -40px;
+}
+
+.testimonial-author {
+    margin-top: 25px;
+}
+
+.author-name {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.author-title {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+
+
+/* تعديلات الاستجابة على الموبايل لقسم التوصيات */
+@media (max-width: 768px) {
+    .testimonial-container {
+        padding: 20px;
+        margin: 0 15px;
+    }
+    
+    .testimonial-quote {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
+    
+    .testimonial-quote::before,
+    .testimonial-quote::after {
+        font-size: 2rem;
+    }
 }
 
