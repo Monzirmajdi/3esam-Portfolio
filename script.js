@@ -1,19 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Get elements
-    const menuToggle = document.getElementById('menuToggle');
-    const sideMenu = document.getElementById('sideMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const navItems = document.querySelectorAll('.nav-item');
-    const actionBtns = document.querySelectorAll('.action-btn');
-    const modals = document.querySelectorAll('.modal');
-    const closeBtns = document.querySelectorAll('.close-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const menuToggle = document.getElementById("menuToggle");
+    const sideMenu = document.getElementById("sideMenu");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const navItems = document.querySelectorAll(".nav-item");
+    const actionBtns = document.querySelectorAll(".action-btn");
+    const modals = document.querySelectorAll(".modal");
+    const closeBtns = document.querySelectorAll(".close-btn");
+    const portfolioItems = document.querySelectorAll(".portfolio-item");
     
-    // Testimonials elements
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    const testimonialDots = document.querySelectorAll('.dot');
-
-    let currentTestimonial = 0;
     let currentProjectImages = [];
     let currentImageIndex = 0;
 
@@ -64,41 +59,41 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Toggle side menu
-    menuToggle.addEventListener('click', function(e) {
+    menuToggle.addEventListener("click", function(e) {
         e.stopPropagation();
         toggleMenu();
     });
 
     // Close menu when clicking overlay
-    menuOverlay.addEventListener('click', function() {
+    menuOverlay.addEventListener("click", function() {
         closeMenu();
     });
 
     // Function to toggle menu
     function toggleMenu() {
-        sideMenu.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-        document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
+        sideMenu.classList.toggle("active");
+        menuOverlay.classList.toggle("active");
+        document.body.style.overflow = sideMenu.classList.contains("active") ? "hidden" : "auto";
     }
 
     // Function to close menu
     function closeMenu() {
-        sideMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        sideMenu.classList.remove("active");
+        menuOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
     }
 
     // Handle navigation item clicks
     navItems.forEach(item => {
-        item.addEventListener('click', function(e) {
+        item.addEventListener("click", function(e) {
             e.preventDefault();
-            const section = this.getAttribute('data-section');
+            const section = this.getAttribute("data-section");
             
             // Close menu first
             closeMenu();
             
             // Open modal if it exists
-            if (section === 'portfolio' || section === 'contact') {
+            if (section === "portfolio" || section === "contact") {
                 setTimeout(() => {
                     openModal(section);
                 }, 300);
@@ -108,56 +103,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle action button clicks
     actionBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const section = this.getAttribute('data-section');
+        btn.addEventListener("click", function() {
+            const section = this.getAttribute("data-section");
             openModal(section);
         });
     });
 
     // Function to open modal
     function openModal(section) {
-        const modal = document.getElementById(section + 'Modal');
+        const modal = document.getElementById(section + "Modal");
         if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
         }
     }
 
     // Handle close button clicks
     closeBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const modalId = this.getAttribute('data-modal');
+        btn.addEventListener("click", function() {
+            const modalId = this.getAttribute("data-modal");
             const modal = document.getElementById(modalId);
             
             if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                modal.classList.remove("active");
+                document.body.style.overflow = "auto";
             }
         });
     });
 
     // Close modal when clicking outside content
     modals.forEach(modal => {
-        modal.addEventListener('click', function(e) {
+        modal.addEventListener("click", function(e) {
             if (e.target === this) {
-                this.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                this.classList.remove("active");
+                document.body.style.overflow = "auto";
             }
         });
     });
 
     // Handle portfolio item clicks
     portfolioItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const projectId = this.getAttribute('data-project-id');
+        item.addEventListener("click", function() {
+            const projectId = this.getAttribute("data-project-id");
             showProjectDetail(projectId);
         });
     });
 
     function showProjectDetail(projectId) {
         const project = projectData[projectId];
-        const projectDetailModal = document.getElementById('projectDetailModal');
-        const projectDetail = document.getElementById('projectDetail');
+        const projectDetailModal = document.getElementById("projectDetailModal");
+        const projectDetail = document.getElementById("projectDetail");
         
         if (project && projectDetail) {
             currentProjectImages = project.images;
@@ -195,22 +190,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <div class="carousel-indicators" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
                     ${project.images.map((_, index) => 
-                        `<span class="carousel-dot ${index === 0 ? 'active' : ''}" onclick="goToImage(${index})" style="width: 12px; height: 12px; border-radius: 50%; background: ${index === 0 ? '#00ff88' : 'rgba(255, 255, 255, 0.3)'}; cursor: pointer; transition: all 0.3s ease;"></span>`
-                    ).join('')}
+                        `<span class="carousel-dot ${index === 0 ? "active" : ""}" onclick="goToImage(${index})" style="width: 12px; height: 12px; border-radius: 50%; background: ${index === 0 ? "#00ff88" : "rgba(255, 255, 255, 0.3)"}; cursor: pointer; transition: all 0.3s ease;"></span>`
+                    ).join("")}
                 </div>
                 
                 <div class="project-gallery" style="margin-top: 40px;">
                     <h3 style="color: #00ff88; margin-bottom: 20px; grid-column: 1 / -1;">Project Gallery</h3>
-                    ${project.images.map(img => `<img src="${img}" alt="${project.title}" style="cursor: pointer;" onclick="openImageInCarousel('${img}')">`).join('')}
+                    ${project.images.map(img => `<img src="${img}" alt="${project.title}" style="cursor: pointer;" onclick="openImageInCarousel("${img}")">`).join("")}
                 </div>
             `;
             
             // Close portfolio modal first
-            document.getElementById('portfolioModal').classList.remove('active');
+            document.getElementById("portfolioModal").classList.remove("active");
             
             // Open project detail modal
             setTimeout(() => {
-                projectDetailModal.classList.add('active');
+                projectDetailModal.classList.add("active");
             }, 300);
         }
     }
@@ -237,131 +232,56 @@ document.addEventListener('DOMContentLoaded', function() {
             currentImageIndex = imageIndex;
             updateCarouselImage();
             // Scroll to carousel
-            document.querySelector('.project-carousel').scrollIntoView({ behavior: 'smooth' });
+            document.querySelector(".project-carousel").scrollIntoView({ behavior: "smooth" });
         }
     };
 
     function updateCarouselImage() {
-        const carouselImage = document.getElementById('carouselImage');
-        const carouselDots = document.querySelectorAll('.carousel-dot');
+        const carouselImage = document.getElementById("carouselImage");
+        const carouselDots = document.querySelectorAll(".carousel-dot");
         
         if (carouselImage && currentProjectImages[currentImageIndex]) {
             carouselImage.src = currentProjectImages[currentImageIndex];
             
             // Update dots
             carouselDots.forEach((dot, index) => {
-                dot.style.background = index === currentImageIndex ? '#00ff88' : 'rgba(255, 255, 255, 0.3)';
-                dot.classList.toggle('active', index === currentImageIndex);
+                dot.style.background = index === currentImageIndex ? "#00ff88" : "rgba(255, 255, 255, 0.3)";
+                dot.classList.toggle("active", index === currentImageIndex);
             });
         }
     }
 
-    // Testimonials functionality
-    function showTestimonial(index) {
-        testimonialCards.forEach((card, i) => {
-            card.classList.toggle('active', i === index);
-        });
-        
-        testimonialDots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-    }
-
-    // Testimonial dots click handlers
-    testimonialDots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            currentTestimonial = index;
-            showTestimonial(currentTestimonial);
-        });
-    });
-
-    // Auto-rotate testimonials
-    setInterval(() => {
-        currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
-        showTestimonial(currentTestimonial);
-    }, 5000);
-
     // Handle contact form submission
-    const contactForm = document.querySelector('.contact-form');
+    const contactForm = document.querySelector(".contact-form");
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener("submit", function(e) {
             e.preventDefault();
             
             // Get form data
-            const email = this.querySelector('input[type="text"]').value;
-            const phone = this.querySelector('input[type="tel"]').value;
-            const interest = this.querySelector('select').value;
-            const budget = this.querySelectorAll('select')[1].value;
-            const message = this.querySelector('textarea').value;
+            const email = this.querySelector("input[type=\"text\"]").value;
+            const phone = this.querySelector("input[type=\"tel\"]").value;
+            const interest = this.querySelector("select").value;
+            const budget = this.querySelectorAll("select")[1].value;
+            const message = this.querySelector("textarea").value;
             
             // Simple validation
             if (email && phone && interest && budget && message) {
-                alert('Thank you! Your message has been sent successfully. I will get back to you soon.');
+                alert("Thank you! Your message has been sent successfully. I will get back to you soon.");
                 this.reset();
             } else {
-                alert('Please fill in all required fields.');
+                alert("Please fill in all required fields.");
             }
         });
     }
-
-    // Add typing effect to main name
-    const nameAlexander = document.querySelector('.name-alexander');
-    if (nameAlexander) {
-        const text = nameAlexander.textContent;
-        nameAlexander.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                nameAlexander.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 150);
-            }
-        };
-        
-        // Start typing effect after a short delay
-        setTimeout(typeWriter, 1000);
-    }
-
-    // Add parallax effect to profile image
-    const profileImage = document.querySelector('.profile-image');
-    if (profileImage) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.3;
-            profileImage.style.transform = `translateY(${rate}px)`;
-        });
-    }
-
-    // Add hover effects for navigation items
-    navItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(12px)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(8px)';
-        });
-    });
-
-    // Add loading animation
-    window.addEventListener('load', function() {
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.8s ease';
-        
-        setTimeout(() => {
-            document.body.style.opacity = '1';
-        }, 200);
-    });
 
     // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener("keydown", function(e) {
         // Close modals and menu with Escape key
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
             modals.forEach(modal => {
-                if (modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
+                if (modal.classList.contains("active")) {
+                    modal.classList.remove("active");
+                    document.body.style.overflow = "auto";
                 }
             });
             
@@ -370,60 +290,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Carousel navigation with arrow keys (only in project detail modal)
-        if (document.getElementById('projectDetailModal').classList.contains('active')) {
-            if (e.key === 'ArrowLeft') {
+        if (document.getElementById("projectDetailModal").classList.contains("active")) {
+            if (e.key === "ArrowLeft") {
                 previousImage();
-            } else if (e.key === 'ArrowRight') {
+            } else if (e.key === "ArrowRight") {
                 nextImage();
             }
         }
     });
 
-    // Add intersection observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe testimonial cards
-    document.querySelectorAll('.testimonial-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'all 0.8s ease';
-        observer.observe(card);
-    });
-
-    // Add smooth scroll behavior
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
     // Add scroll indicator functionality
-    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const scrollIndicator = document.querySelector(".scroll-indicator");
     if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', () => {
-            const testimonialsSection = document.querySelector('.testimonials-section');
+        scrollIndicator.addEventListener("click", () => {
+            const testimonialsSection = document.querySelector(".testimonial-section");
             if (testimonialsSection) {
                 testimonialsSection.scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: "smooth"
                 });
             }
         });
@@ -433,11 +316,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    document.addEventListener('touchstart', function(e) {
+    document.addEventListener("touchstart", function(e) {
         touchStartX = e.changedTouches[0].screenX;
     });
 
-    document.addEventListener('touchend', function(e) {
+    document.addEventListener("touchend", function(e) {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     });
@@ -446,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const swipeThreshold = 50;
         const diff = touchStartX - touchEndX;
         
-        if (document.getElementById('projectDetailModal').classList.contains('active')) {
+        if (document.getElementById("projectDetailModal").classList.contains("active")) {
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
                     // Swipe left - next image
@@ -464,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const container = document.body;
         
         for (let i = 0; i < 5; i++) {
-            const element = document.createElement('div');
+            const element = document.createElement("div");
             element.style.cssText = `
                 position: fixed;
                 width: ${Math.random() * 100 + 50}px;
@@ -482,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add CSS for floating animation
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
         @keyframes float {
             0% {
@@ -504,24 +387,24 @@ document.addEventListener('DOMContentLoaded', function() {
     createFloatingElements();
 
     // تحسينات الأداء (Lazy Loading + Loader)
-    const lazyImages = document.querySelectorAll('img[data-src]');
+    const lazyImages = document.querySelectorAll("img[data-src]");
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.dataset.src;
-                img.removeAttribute('data-src');
+                img.removeAttribute("data-src");
                 imageObserver.unobserve(img);
             }
         });
-    }, { rootMargin: '200px' }); // تحميل الصور قبل ظهورها بــ 200px
+    }, { rootMargin: "200px" }); // تحميل الصور قبل ظهورها بــ 200px
 
     lazyImages.forEach(img => imageObserver.observe(img));
 
     // مؤشر التحميل
-    window.addEventListener('load', function() {
-        const loader = document.createElement('div');
-        loader.className = 'page-loader';
+    window.addEventListener("load", function() {
+        const loader = document.createElement("div");
+        loader.className = "page-loader";
         loader.innerHTML = `
             <div class="loader-content">
                 <div class="loader-spinner"></div>
@@ -531,19 +414,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(loader);
         
         setTimeout(() => {
-            loader.style.opacity = '0';
+            loader.style.opacity = "0";
             setTimeout(() => loader.remove(), 500);
         }, 1000);
     });
 
     // تأثيرات Hover المتقدمة
-    document.querySelectorAll('.portfolio-item, .action-btn, .social-link').forEach(el => {
-        el.addEventListener('mousemove', function(e) {
+    document.querySelectorAll(".portfolio-item, .action-btn, .social-link").forEach(el => {
+        el.addEventListener("mousemove", function(e) {
             const rect = this.getBoundingClientRect();
-            this.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-            this.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            this.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+            this.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
         });
     });
 
 });
+
 
