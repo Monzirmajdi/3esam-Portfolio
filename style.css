@@ -587,12 +587,10 @@ body::after {
 }
 
 .hero-footer-actions .scroll-text::after {
-    content: 
-    margin-left: 0px;
-    animation: none;
-    color: unset;
-    display: block;
-    text-align: left;
+    content: '↓';
+    margin-left: 10px;
+    animation: bounce 2s infinite;
+    color: var(--primary-gold);
 }
 
 @keyframes bounce {
@@ -601,42 +599,7 @@ body::after {
     60% { transform: translateY(-3px); }
 }
 
-.hero-footer-actions .action-buttons {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 0;
-}
 
-.action-btn {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: var(--transition-bounce);
-    padding: 10px 0;
-    border-bottom: 2px solid transparent;
-    position: relative;
-    overflow: hidden;
-}
-
-.action-btn::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary-gold), var(--primary-gold-dark));
-    transition: var(--transition-smooth);
-}
-
-.action-btn:hover::before {
-    left: 0;
-}
-
-.action-btn:hover {
-    color: var(--primary-gold);
-    transform: translateY(-3px);
-}
 
 /* Modal Styles مع تحسينات Glassmorphism */
 .modal {
@@ -1868,55 +1831,6 @@ button,
 .last-name {
     color: var(--text-primary); /* لون الاسم الأخير */
     display: block;
-}
-
-
-
-
-
-
-
-
-/* تنسيق أزرار الإجراءات لتظهر فوق الصورة في الجزء الشمالي السفلي */
-.hero-footer-actions {
-    position: absolute;
-    bottom: 5%; /* نفس المسافة من الأسفل مثل الاسم */
-    left: 5%; /* نفس المسافة من اليسار مثل الاسم */
-    z-index: 5; /* التأكد من ظهور الأزرار فوق الصورة */
-    display: flex;
-    flex-direction: column; /* لجعل الأزرار تظهر تحت بعضها البعض */
-    align-items: flex-start; /* لمحاذاة الأزرار إلى اليسار */
-    gap: 10px; /* مسافة بين الأزرار */
-}
-
-.hero-footer-actions .scroll-text {
-    color: var(--text-primary);
-    font-size: 0.8em;
-    margin-bottom: 5px;
-}
-
-.hero-footer-actions .action-buttons {
-    display: flex;
-    gap: 10px; /* مسافة بين الأزرار */
-}
-
-.action-btn {
-    background-color: rgba(255, 255, 255, 0.1); /* خلفية شفافة للأزرار */
-    color: var(--text-primary);
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: var(--transition-smooth);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-.action-btn:hover {
-    background-color: var(--primary-gold);
-    color: var(--bg-primary);
-    border-color: var(--primary-gold);
 }
 
 
