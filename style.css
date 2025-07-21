@@ -41,7 +41,7 @@ body {
 .location-dot {
     width: 8px;
     height: 8px;
-    background: #00ff88;
+    background: #FFD700;
     border-radius: 50%;
 }
 
@@ -54,7 +54,7 @@ body {
 .logo-icon {
     width: 32px;
     height: 32px;
-    background: linear-gradient(45deg, #00ff88, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #00ccff);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -85,7 +85,7 @@ body {
 
 .menu-toggle:hover {
     background: rgba(255, 255, 255, 0.15);
-    border-color: #00ff88;
+    border-color: #FFD700;
 }
 
 .menu-grid {
@@ -105,7 +105,7 @@ body {
 }
 
 .menu-toggle:hover .menu-dot {
-    background-color: #00ff88;
+    background-color: #FFD700;
 }
 
 /* Side Menu */
@@ -167,7 +167,7 @@ body {
 }
 
 .nav-item:hover {
-    color: #00ff88;
+    color: #FFD700;
     transform: translateX(8px);
 }
 
@@ -216,9 +216,9 @@ body {
 }
 
 .social-link:hover {
-    background: #00ff88;
+    background: #FFD700;
     color: #000;
-    border-color: #00ff88;
+    border-color: #FFD700;
 }
 
 .social-link svg {
@@ -284,7 +284,7 @@ body {
 }
 
 .first-name {
-    background: linear-gradient(45deg, #00ff88, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -334,8 +334,8 @@ body {
 }
 
 .action-btn:hover {
-    color: #00ff88;
-    border-bottom-color: #00ff88;
+    color: #FFD700;
+    border-bottom-color: #FFD700;
 }
 
 .hero-left {
@@ -365,7 +365,7 @@ body {
 }
 
 .name-alexander {
-    background: linear-gradient(45deg, #00ff88, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -435,9 +435,9 @@ body {
 }
 
 .social-icon-link:hover {
-    background: #00ff88;
+    background: #FFD700;
     color: #000;
-    border-color: #00ff88;
+    border-color: #FFD700;
 }
 
 .social-icon-link svg {
@@ -474,7 +474,7 @@ body {
 }
 
 .scroll-indicator:hover {
-    color: #00ff88;
+    color: #FFD700;
 }
 
 .scroll-text {
@@ -525,7 +525,7 @@ body {
 
 .action-btn.primary:hover {
     background: rgba(255, 255, 255, 0.2);
-    border-color: #00ff88;
+    border-color: #FFD700;
     transform: translateY(-2px);
 }
 
@@ -536,8 +536,8 @@ body {
 }
 
 .action-btn.secondary:hover {
-    background: #00ff88;
-    border-color: #00ff88;
+    background: #FFD700;
+    border-color: #FFD700;
     transform: translateY(-2px);
 }
 
@@ -605,14 +605,14 @@ body {
 }
 
 .close-btn:hover {
-    color: #00ff88;
+    color: #FFD700;
     transform: rotate(90deg);
 }
 
 .modal-content h2 {
     font-size: 3rem;
     margin-bottom: 40px;
-    background: linear-gradient(45deg, #00ff88, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -638,8 +638,8 @@ body {
 
 .portfolio-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
-    border-color: #00ff88;
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+    border-color: #FFD700;
 }
 
 .portfolio-item img {
@@ -656,8 +656,8 @@ body {
 }
 
 .tag {
-    background: rgba(0, 255, 136, 0.2);
-    color: #00ff88;
+    background: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
     padding: 6px 15px;
     border-radius: 20px;
     font-size: 12px;
@@ -689,7 +689,7 @@ body {
 }
 
 .project-meta-item h4 {
-    color: #00ff88;
+    color: #FFD700;
     margin-bottom: 5px;
 }
 
@@ -721,9 +721,9 @@ body {
 }
 
 .carousel-btn:hover {
-    background: #00ff88;
+    background: #FFD700;
     color: #000;
-    border-color: #00ff88;
+    border-color: #FFD700;
 }
 
 .carousel-btn.prev {
@@ -762,7 +762,7 @@ body {
 }
 
 .contact-info h3 {
-    color: #00ff88;
+    color: #FFD700;
     margin-bottom: 10px;
     font-size: 1.3rem;
 }
@@ -777,7 +777,7 @@ body {
 }
 
 .contact-form h3 {
-    color: #00ff88;
+    color: #FFD700;
     margin-bottom: 30px;
     font-size: 1.5rem;
 }
@@ -800,12 +800,12 @@ body {
 .contact-form select:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #00ff88;
+    border-color: #FFD700;
     box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
 .contact-form button {
-    background: linear-gradient(45deg, #00ff88, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #00ccff);
     color: #000;
     border: none;
     padding: 15px 30px;
@@ -870,6 +870,51 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
         padding: 100px 20px 40px;
     }
     
+    .hero-section {
+        padding: 20px;
+        text-align: left;
+        align-items: flex-start;
+        margin-bottom: 80px;
+    }
+    
+    .hero-text {
+        margin-bottom: 30px;
+    }
+    
+    .greeting {
+        font-size: 1.2rem;
+    }
+    
+    .main-name {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+    
+    .horizontal-image {
+        margin: 0 auto 60px;
+    }
+    
+    .hero-footer-actions {
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .hero-footer-actions .scroll-text {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-footer-actions .action-buttons {
+        gap: 20px;
+        flex-direction: row;
+    }
+    
+    .action-btn {
+        font-size: 1rem;
+        padding: 8px 0;
+    }
+    
     .profile-container {
         width: 280px;
         height: 360px;
@@ -885,12 +930,6 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
         flex-direction: column;
         gap: 20px;
         width: 100%;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
     }
     
     .contact-content {
@@ -916,23 +955,53 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
         margin: 80px 0;
     }
     
-    .hero-section {
-        margin-bottom: 80px;
+    .testimonial-quote {
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 480px) {
+    .hero-section {
+        padding: 15px;
+    }
+    
+    .greeting {
+        font-size: 1rem;
+    }
+    
     .main-name {
-        font-size: 3rem;
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+    
+    .horizontal-image {
+        margin: 0 auto 40px;
+    }
+    
+    .hero-footer-actions {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-footer-actions .scroll-text {
+        font-size: 0.9rem;
+    }
+    
+    .hero-footer-actions .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .action-btn {
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
     }
     
     .modal-content h2 {
         font-size: 2rem;
-    }
-    
-    .action-btn {
-        width: 100%;
-        justify-content: center;
     }
     
     .carousel-btn {
@@ -966,7 +1035,7 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
     width: 50px;
     height: 50px;
     border: 3px solid rgba(255, 255, 255, 0.1);
-    border-top-color: #00ff88;
+    border-top-color: #FFD700;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 20px;
@@ -993,7 +1062,7 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
     left: calc(var(--mouse-x, 0) - 50px);
     width: 100px;
     height: 100px;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -1065,18 +1134,11 @@ img {
 
 /* التعديلات للهاتف المحمول */
 @media (max-width: 768px) {
-    .first-name,
-    .last-name {
-        font-size: 2.5rem;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .testimonial-quote {
-        font-size: 1.2rem;
+    .hero-footer-actions {
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 20px;
     }
 }
 
