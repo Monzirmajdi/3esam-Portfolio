@@ -299,7 +299,7 @@ body {
 .horizontal-image {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto 30px;
+    margin: 0 auto 100px;
     overflow: hidden;
     border-radius: 10px;
 }
@@ -310,18 +310,18 @@ body {
     display: block;
 }
 
-.scroll-text {
+.hero-footer-actions .scroll-text {
     font-size: 1.2rem;
     color: #888;
-    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-bottom: 0;
 }
 
-.action-buttons {
+.hero-footer-actions .action-buttons {
     display: flex;
     gap: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 0;
 }
 
 .action-btn {
@@ -1080,4 +1080,21 @@ img {
     }
 }
 
+
+
+
+.hero-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px; /* Adjust as needed */
+}
+
+@media (max-width: 768px) {
+    .hero-footer-actions {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
 
