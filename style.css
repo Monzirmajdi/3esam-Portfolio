@@ -587,10 +587,12 @@ body::after {
 }
 
 .hero-footer-actions .scroll-text::after {
-    content: '↓';
-    margin-left: 10px;
-    animation: bounce 2s infinite;
-    color: var(--primary-gold);
+    content: 
+    margin-left: 0px;
+    animation: none;
+    color: unset;
+    display: block;
+    text-align: left;
 }
 
 @keyframes bounce {
@@ -1826,6 +1828,95 @@ button,
 @keyframes glowRotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+
+
+
+/* تعديلات لوضع الاسم فوق الصورة في الجزء الشمالي السفلي */
+.hero-section {
+    position: relative; /* لتمكين تحديد المواقع المطلقة للعناصر الفرعية */
+    overflow: hidden; /* لإخفاء أي محتوى يتجاوز حدود القسم */
+}
+
+.horizontal-image {
+    position: relative; /* لتمكين تحديد المواقع المطلقة للعناصر الفرعية */
+    width: 100%;
+    height: auto;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 5%; /* ضبط المسافة من الأسفل */
+    left: 5%; /* ضبط المسافة من اليسار */
+    z-index: 5; /* التأكد من ظهور الاسم فوق الصورة */
+    color: var(--text-primary); /* لون النص */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* ظل للنص لتحسين الرؤية */
+}
+
+.main-name {
+    font-size: 4em; /* حجم الخط للأسماء */
+    line-height: 0.9; /* تباعد الأسطر */
+    margin-bottom: 10px;
+}
+
+.first-name {
+    color: var(--primary-gold); /* لون الاسم الأول */
+    display: block;
+}
+
+.last-name {
+    color: var(--text-primary); /* لون الاسم الأخير */
+    display: block;
+}
+
+
+
+
+
+
+
+
+/* تنسيق أزرار الإجراءات لتظهر فوق الصورة في الجزء الشمالي السفلي */
+.hero-footer-actions {
+    position: absolute;
+    bottom: 5%; /* نفس المسافة من الأسفل مثل الاسم */
+    left: 5%; /* نفس المسافة من اليسار مثل الاسم */
+    z-index: 5; /* التأكد من ظهور الأزرار فوق الصورة */
+    display: flex;
+    flex-direction: column; /* لجعل الأزرار تظهر تحت بعضها البعض */
+    align-items: flex-start; /* لمحاذاة الأزرار إلى اليسار */
+    gap: 10px; /* مسافة بين الأزرار */
+}
+
+.hero-footer-actions .scroll-text {
+    color: var(--text-primary);
+    font-size: 0.8em;
+    margin-bottom: 5px;
+}
+
+.hero-footer-actions .action-buttons {
+    display: flex;
+    gap: 10px; /* مسافة بين الأزرار */
+}
+
+.action-btn {
+    background-color: rgba(255, 255, 255, 0.1); /* خلفية شفافة للأزرار */
+    color: var(--text-primary);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.action-btn:hover {
+    background-color: var(--primary-gold);
+    color: var(--bg-primary);
+    border-color: var(--primary-gold);
 }
 
 
