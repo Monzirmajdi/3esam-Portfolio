@@ -100,8 +100,20 @@ document.addEventListener("DOMContentLoaded", function() {
             // Close menu first
             closeMenu();
             
+            // Handle experience section scroll
+            if (section === "experience") {
+                setTimeout(() => {
+                    const experienceSection = document.querySelector(".experience-section");
+                    if (experienceSection) {
+                        experienceSection.scrollIntoView({ 
+                            behavior: "smooth",
+                            block: "start"
+                        });
+                    }
+                }, 300);
+            }
             // Open modal if it exists
-            if (section === "portfolio" || section === "contact") {
+            else if (section === "portfolio" || section === "contact") {
                 setTimeout(() => {
                     openModal(section);
                 }, 300);
