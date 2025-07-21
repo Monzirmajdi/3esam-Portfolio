@@ -123,15 +123,11 @@ body {
     overflow-y: auto;
 }
 
-.side-menu.active {
-    right: 0;
-}
-
-.menu-content {
-    padding: 80px 40px 40px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+@media (max-width: 768px) {
+    .side-menu {
+        width: 80%;
+        right: -80%;
+    }
 }
 
 .menu-header h3 {
@@ -833,8 +829,7 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
     user-select: none;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* Responsive Design */@media (max-width: 1024px) {
     .hero-section {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -851,8 +846,8 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
     }
     
     .side-menu {
-        width: 100%;
-        right: -100%;
+        width: 80%; /* أو أي قيمة أخرى أقل من 100% */
+        right: -80%;
     }
     
     .menu-nav {
@@ -979,26 +974,26 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
     
     .hero-footer-actions {
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap; /* Ensure no wrapping */
         justify-content: center;
-        gap: 10px;
+        gap: 5px; /* Reduce gap */
     }
     
     .hero-footer-actions .scroll-text {
-        font-size: 0.8rem;
+        font-size: 0.7rem; /* Further reduce font size */
         white-space: nowrap;
     }
     
     .hero-footer-actions .action-buttons {
         flex-direction: row;
-        gap: 10px;
-        flex-wrap: wrap;
+        gap: 5px; /* Reduce gap */
+        flex-wrap: nowrap; /* Ensure no wrapping */
         justify-content: center;
     }
     
     .action-btn {
-        font-size: 0.8rem;
-        padding: 6px 10px;
+        font-size: 0.7rem; /* Further reduce font size */
+        padding: 4px 8px; /* Reduce padding */
         white-space: nowrap;
     }
     
