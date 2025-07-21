@@ -295,7 +295,7 @@ body {
 }
 
 .hero-text {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -330,7 +330,7 @@ body {
 .horizontal-image {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto 100px;
+    margin: 20px auto 100px;
     overflow: hidden;
     border-radius: 10px;
 }
@@ -347,7 +347,7 @@ body {
     max-width: 1200px;
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
-    margin: 40px auto;
+    margin: 20px auto;
 }
 
 .hero-footer-actions .scroll-text {
@@ -1508,7 +1508,7 @@ img {
 
 @media (max-width: 768px) {
     .section-separator {
-        margin: 40px auto;
+        margin: 20px auto;
     }
 }
 
