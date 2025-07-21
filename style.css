@@ -15,13 +15,12 @@
     --text-secondary: #888;
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
@@ -118,7 +117,6 @@ body::after {
     background: var(--primary-gold);
     border-radius: 50%;
     animation: pulse 2s infinite;
-    box-shadow: 0 0 10px var(--primary-gold);
 }
 
 @keyframes pulse {
@@ -147,7 +145,6 @@ body::after {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow-glow);
 }
 
 .logo-icon::before {
@@ -180,7 +177,6 @@ body::after {
     color: var(--text-primary);
     font-size: 18px;
     font-weight: 700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 .menu-toggle {
@@ -217,7 +213,6 @@ body::after {
     background: rgba(255, 215, 0, 0.1);
     border-color: var(--primary-gold);
     transform: scale(1.1) rotate(5deg);
-    box-shadow: var(--shadow-glow);
 }
 
 .menu-grid {
@@ -241,7 +236,6 @@ body::after {
 .menu-toggle:hover .menu-dot {
     background-color: var(--primary-gold);
     transform: scale(1.2);
-    box-shadow: 0 0 8px var(--primary-gold);
 }
 
 .menu-toggle:hover .menu-dot:nth-child(1) { animation-delay: 0s; }
@@ -309,7 +303,6 @@ body::after {
     font-size: 24px;
     margin: 0;
     font-weight: 600;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
 .menu-header .close-btn {
@@ -335,7 +328,6 @@ body::after {
     background: rgba(255, 215, 0, 0.1);
     border-color: rgba(255, 215, 0, 0.3);
     transform: rotate(90deg) scale(1.1);
-    box-shadow: var(--shadow-glow);
 }
 
 .menu-nav {
@@ -385,7 +377,6 @@ body::after {
 .nav-item:hover {
     color: var(--primary-gold);
     transform: translateX(8px);
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .nav-icon {
@@ -403,7 +394,6 @@ body::after {
 
 .nav-icon svg {
     stroke: currentColor;
-    filter: drop-shadow(0 0 5px currentColor);
 }
 
 /* Menu Overlay */
@@ -471,7 +461,7 @@ body::after {
 }
 
 .main-name {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Astonpoliz', sans-serif; /* Changed font to Astonpoliz */
     display: flex;
     flex-direction: column;
     font-weight: 700;
@@ -488,7 +478,6 @@ body::after {
     background-clip: text;
     line-height: 1;
     position: relative;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
 }
 
 .first-name::after {
@@ -500,7 +489,7 @@ body::after {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: blur(10px);
+    filter: blur(0px); /* Removed blur effect */
     z-index: -1;
     opacity: 0.7;
 }
@@ -508,7 +497,6 @@ body::after {
 .last-name {
     color: var(--text-primary);
     line-height: 1;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .horizontal-image {
@@ -566,16 +554,7 @@ body::after {
 
 .hero-separator::before {
     content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background: var(--primary-gold);
-    border-radius: 50%;
-    box-shadow: 0 0 20px var(--primary-gold);
-    animation: pulse 2s infinite;
+    display: none; /* Removed the light strip */
 }
 
 .hero-footer-actions {
@@ -644,7 +623,6 @@ body::after {
 .action-btn:hover {
     color: var(--primary-gold);
     transform: translateY(-3px);
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
 /* Modal Styles مع تحسينات Glassmorphism */
@@ -733,7 +711,6 @@ body::after {
     color: var(--primary-gold);
     transform: rotate(90deg) scale(1.1);
     background: rgba(255, 215, 0, 0.1);
-    box-shadow: var(--shadow-glow);
 }
 
 .modal-content h2 {
@@ -744,7 +721,6 @@ body::after {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-align: center;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
 }
 
 /* Portfolio Grid مع تحسينات التفاعل */
@@ -785,7 +761,7 @@ body::after {
 
 .portfolio-item:hover {
     transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     border-color: var(--primary-gold);
 }
 
@@ -826,7 +802,6 @@ body::after {
 .tag:hover {
     background: rgba(255, 215, 0, 0.3);
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
 }
 
 .portfolio-item h3 {
@@ -836,7 +811,6 @@ body::after {
     font-weight: 600;
     position: relative;
     z-index: 2;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 /* Contact Content مع تحسينات التفاعل */
@@ -850,7 +824,6 @@ body::after {
     color: var(--primary-gold);
     margin-bottom: 10px;
     font-size: 1.3rem;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
 .contact-item {
@@ -866,7 +839,6 @@ body::after {
 .contact-item:hover {
     background: rgba(255, 215, 0, 0.1);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
 }
 
 .contact-item p {
@@ -878,7 +850,6 @@ body::after {
     color: var(--primary-gold);
     margin-bottom: 30px;
     font-size: 1.5rem;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
 .contact-form input,
@@ -901,7 +872,6 @@ body::after {
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--primary-gold);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
     background: rgba(26, 26, 26, 0.9);
     transform: translateY(-2px);
 }
@@ -919,7 +889,6 @@ body::after {
     width: 100%;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
 }
 
 .contact-form button::before {
@@ -939,7 +908,6 @@ body::after {
 
 .contact-form button:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
 }
 
 /* Section Separator مع تحسينات بصرية */
@@ -954,16 +922,7 @@ body::after {
 
 .section-separator::before {
     content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background: var(--primary-gold);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--primary-gold);
-    animation: pulse 3s infinite;
+    display: none; /* Removed the light strip */
 }
 
 /* Experience Section مع تحسينات الحركة */
@@ -1000,7 +959,6 @@ body::after {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
 }
 
 .section-subtitle {
@@ -1049,7 +1007,6 @@ body::after {
     border-radius: 50%;
     position: relative;
     z-index: 2;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
     transition: var(--transition-bounce);
 }
 
@@ -1112,7 +1069,6 @@ body::after {
 .experience-content:hover {
     background: rgba(255, 215, 0, 0.05);
     transform: translateX(10px) translateY(-5px);
-    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
 }
 
 .experience-period {
@@ -1122,7 +1078,6 @@ body::after {
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .experience-title {
@@ -1136,7 +1091,6 @@ body::after {
 
 .experience-content:hover .experience-title {
     color: var(--primary-gold);
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
 .experience-company {
@@ -1169,7 +1123,6 @@ body::after {
     background: rgba(255, 215, 0, 0.2);
     border-color: var(--primary-gold);
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
 }
 
 .experience-description {
@@ -1269,13 +1222,11 @@ body::after {
     border: 3px solid var(--primary-gold);
     margin-right: 30px;
     object-fit: cover;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
     transition: var(--transition-bounce);
 }
 
 .author-image:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 35px rgba(255, 215, 0, 0.6);
 }
 
 .author-info {
@@ -1287,7 +1238,6 @@ body::after {
     font-weight: 600;
     font-size: 1.3rem;
     margin-bottom: 8px;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .author-title {
@@ -1303,7 +1253,6 @@ body::after {
     position: relative;
     z-index: 2;
     text-align: center;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 /* Rating Stars مع تحسينات */
@@ -1324,22 +1273,18 @@ body::after {
     cursor: pointer;
     position: relative;
     display: inline-block;
-    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
 }
 
 .star.filled {
     color: var(--primary-gold);
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
     animation: starGlow 3s ease-in-out infinite;
 }
 
 @keyframes starGlow {
     0%, 100% { 
-        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         transform: scale(1);
     }
     50% { 
-        text-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 35px rgba(255, 215, 0, 0.6);
         transform: scale(1.1);
     }
 }
@@ -1394,13 +1339,11 @@ body::after {
 .dot:hover {
     background: rgba(255, 215, 0, 0.6);
     transform: scale(1.2);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
 .dot.active {
     background: var(--primary-gold);
     border-color: rgba(255, 215, 0, 0.3);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
     transform: scale(1.3);
 }
 
@@ -1467,7 +1410,6 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
 .footer-logo .star-icon {
@@ -1480,7 +1422,6 @@ body::after {
     color: var(--text-primary);
     font-size: 16px;
     font-weight: 700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 .footer-signature {
@@ -1538,7 +1479,6 @@ body::after {
     color: #000;
     border-color: var(--primary-gold);
     transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
 }
 
 .footer-social-link svg {
@@ -1901,4 +1841,5 @@ button,
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
 
