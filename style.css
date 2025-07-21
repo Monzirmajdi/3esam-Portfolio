@@ -341,6 +341,15 @@ body {
     display: block;
 }
 
+/* Hero Separator - فاصل بين الاسم والصورة */
+.hero-separator {
+    width: 100%;
+    max-width: 1200px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 40px auto;
+}
+
 .hero-footer-actions .scroll-text {
     font-size: 1.2rem;
     color: #888;
