@@ -1,5 +1,6 @@
+// تحسينات الأداء والتفاعلية المتقدمة
 document.addEventListener("DOMContentLoaded", function() {
-    // Get elements
+    // متغيرات عامة
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
     const menuOverlay = document.getElementById("menuOverlay");
@@ -12,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     let currentProjectImages = [];
     let currentImageIndex = 0;
+    let isAnimating = false;
 
-    // Project data with carousel images
+    // بيانات المشاريع مع الصور
     const projectData = {
         0: {
             title: "Runes Studio Web Design",
@@ -59,61 +61,95 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Toggle side menu
-    menuToggle.addEventListener("click", function(e) {
-        e.stopPropagation();
-        toggleMenu();
-    });
+    // تهيئة التأثيرات المتقدمة
+    initAdvancedEffects();
+    initScrollAnimations();
+    initParallaxEffects();
+    initMouseFollowEffects();
+    initRippleEffects();
+    initPageLoader();
 
-    // Close menu when clicking overlay
-    menuOverlay.addEventListener("click", function() {
-        closeMenu();
-    });
+    // وظائف القائمة الجانبية
+    if (menuToggle) {
+        menuToggle.addEventListener("click", function(e) {
+            e.stopPropagation();
+            toggleMenu();
+        });
+    }
 
-    // Close menu when clicking the close button
+    if (menuOverlay) {
+        menuOverlay.addEventListener("click", function() {
+            closeMenu();
+        });
+    }
+
     if (sideMenuCloseBtn) {
         sideMenuCloseBtn.addEventListener("click", function() {
             closeMenu();
         });
     }
 
-    // Function to toggle menu
     function toggleMenu() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
         sideMenu.classList.toggle("active");
         menuOverlay.classList.toggle("active");
         document.body.style.overflow = sideMenu.classList.contains("active") ? "hidden" : "auto";
+        
+        // إضافة تأثير صوتي بصري
+        if (sideMenu.classList.contains("active")) {
+            animateMenuItems();
+        }
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 600);
     }
 
-    // Function to close menu
     function closeMenu() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
         sideMenu.classList.remove("active");
         menuOverlay.classList.remove("active");
         document.body.style.overflow = "auto";
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 600);
     }
 
-    // Handle navigation item clicks
+    function animateMenuItems() {
+        const menuItems = document.querySelectorAll(".nav-item");
+        menuItems.forEach((item, index) => {
+            item.style.opacity = "0";
+            item.style.transform = "translateX(50px)";
+            
+            setTimeout(() => {
+                item.style.transition = "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+                item.style.opacity = "1";
+                item.style.transform = "translateX(0)";
+            }, index * 100);
+        });
+    }
+
+    // معالجة النقر على عناصر التنقل
     navItems.forEach(item => {
         item.addEventListener("click", function(e) {
             e.preventDefault();
             const section = this.getAttribute("data-section");
             
-            // Close menu first
             closeMenu();
             
-            // Handle experience section scroll
             if (section === "experience") {
                 setTimeout(() => {
                     const experienceSection = document.querySelector(".experience-section");
                     if (experienceSection) {
-                        experienceSection.scrollIntoView({ 
-                            behavior: "smooth",
-                            block: "start"
-                        });
+                        smoothScrollTo(experienceSection);
                     }
                 }, 300);
-            }
-            // Open modal if it exists
-            else if (section === "portfolio" || section === "contact") {
+            } else if (section === "portfolio" || section === "contact") {
                 setTimeout(() => {
                     openModal(section);
                 }, 300);
@@ -121,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Handle action button clicks
+    // معالجة أزرار الإجراءات
     actionBtns.forEach(btn => {
         btn.addEventListener("click", function() {
             const section = this.getAttribute("data-section");
@@ -129,39 +165,63 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Function to open modal
     function openModal(section) {
         const modal = document.getElementById(section + "Modal");
         if (modal) {
             modal.classList.add("active");
             document.body.style.overflow = "hidden";
+            
+            // تأثير فتح المودال
+            const modalContent = modal.querySelector(".modal-content");
+            if (modalContent) {
+                modalContent.style.transform = "scale(0.8) translateY(50px)";
+                modalContent.style.opacity = "0";
+                
+                setTimeout(() => {
+                    modalContent.style.transition = "all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+                    modalContent.style.transform = "scale(1) translateY(0)";
+                    modalContent.style.opacity = "1";
+                }, 50);
+            }
         }
     }
 
-    // Handle close button clicks
+    // معالجة أزرار الإغلاق
     closeBtns.forEach(btn => {
         btn.addEventListener("click", function() {
             const modalId = this.getAttribute("data-modal");
             const modal = document.getElementById(modalId);
             
             if (modal) {
-                modal.classList.remove("active");
-                document.body.style.overflow = "auto";
+                closeModal(modal);
             }
         });
     });
 
-    // Close modal when clicking outside content
+    function closeModal(modal) {
+        const modalContent = modal.querySelector(".modal-content");
+        if (modalContent) {
+            modalContent.style.transition = "all 0.4s ease-out";
+            modalContent.style.transform = "scale(0.9) translateY(30px)";
+            modalContent.style.opacity = "0";
+            
+            setTimeout(() => {
+                modal.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }, 400);
+        }
+    }
+
+    // إغلاق المودال عند النقر خارج المحتوى
     modals.forEach(modal => {
         modal.addEventListener("click", function(e) {
             if (e.target === this) {
-                this.classList.remove("active");
-                document.body.style.overflow = "auto";
+                closeModal(this);
             }
         });
     });
 
-    // Handle portfolio item clicks
+    // معالجة عناصر المحفظة
     portfolioItems.forEach(item => {
         item.addEventListener("click", function() {
             const projectId = this.getAttribute("data-project-id");
@@ -210,38 +270,39 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 <div class="carousel-indicators" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
                     ${project.images.map((_, index) => 
-                        `<span class="carousel-dot ${index === 0 ? "active" : ""}" onclick="goToImage(${index})" style="width: 12px; height: 12px; border-radius: 50%; background: ${index === 0 ? "#00ff88" : "rgba(255, 255, 255, 0.3)"}; cursor: pointer; transition: all 0.3s ease;"></span>`
+                        `<span class="carousel-dot ${index === 0 ? "active" : ""}" onclick="goToImage(${index})" style="width: 12px; height: 12px; border-radius: 50%; background: ${index === 0 ? "#FFD700" : "rgba(255, 255, 255, 0.3)"}; cursor: pointer; transition: all 0.3s ease;"></span>`
                     ).join("")}
                 </div>
                 
                 <div class="project-gallery" style="margin-top: 40px;">
-                    <h3 style="color: #00ff88; margin-bottom: 20px; grid-column: 1 / -1;">Project Gallery</h3>
-                    ${project.images.map(img => `<img src="${img}" alt="${project.title}" style="cursor: pointer;" onclick="openImageInCarousel("${img}")">`).join("")}
+                    <h3 style="color: #FFD700; margin-bottom: 20px; grid-column: 1 / -1;">Project Gallery</h3>
+                    ${project.images.map(img => `<img src="${img}" alt="${project.title}" style="cursor: pointer;" onclick="openImageInCarousel('${img}')">`).join("")}
                 </div>
             `;
             
-            // Close portfolio modal first
-            document.getElementById("portfolioModal").classList.remove("active");
+            closeModal(document.getElementById("portfolioModal"));
             
-            // Open project detail modal
             setTimeout(() => {
-                projectDetailModal.classList.add("active");
+                openModal("projectDetail");
             }, 300);
         }
     }
 
-    // Carousel functions (global scope for onclick handlers)
+    // وظائف الكاروسيل
     window.previousImage = function() {
+        if (isAnimating) return;
         currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
         updateCarouselImage();
     };
 
     window.nextImage = function() {
+        if (isAnimating) return;
         currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
         updateCarouselImage();
     };
 
     window.goToImage = function(index) {
+        if (isAnimating) return;
         currentImageIndex = index;
         updateCarouselImage();
     };
@@ -251,8 +312,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (imageIndex !== -1) {
             currentImageIndex = imageIndex;
             updateCarouselImage();
-            // Scroll to carousel
-            document.querySelector(".project-carousel").scrollIntoView({ behavior: "smooth" });
+            smoothScrollTo(document.querySelector(".project-carousel"));
         }
     };
 
@@ -261,55 +321,101 @@ document.addEventListener("DOMContentLoaded", function() {
         const carouselDots = document.querySelectorAll(".carousel-dot");
         
         if (carouselImage && currentProjectImages[currentImageIndex]) {
-            carouselImage.src = currentProjectImages[currentImageIndex];
+            isAnimating = true;
             
-            // Update dots
-            carouselDots.forEach((dot, index) => {
-                dot.style.background = index === currentImageIndex ? "#00ff88" : "rgba(255, 255, 255, 0.3)";
-                dot.classList.toggle("active", index === currentImageIndex);
-            });
+            // تأثير الانتقال
+            carouselImage.style.opacity = "0";
+            carouselImage.style.transform = "scale(0.95)";
+            
+            setTimeout(() => {
+                carouselImage.src = currentProjectImages[currentImageIndex];
+                carouselImage.style.opacity = "1";
+                carouselImage.style.transform = "scale(1)";
+                
+                // تحديث النقاط
+                carouselDots.forEach((dot, index) => {
+                    dot.style.background = index === currentImageIndex ? "#FFD700" : "rgba(255, 255, 255, 0.3)";
+                    dot.classList.toggle("active", index === currentImageIndex);
+                });
+                
+                isAnimating = false;
+            }, 300);
         }
     }
 
-    // Handle contact form submission
+    // معالجة نموذج الاتصال
     const contactForm = document.querySelector(".contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", function(e) {
             e.preventDefault();
             
-            // Get form data
             const email = this.querySelector("input[type=\"text\"]").value;
             const phone = this.querySelector("input[type=\"tel\"]").value;
             const interest = this.querySelector("select").value;
             const budget = this.querySelectorAll("select")[1].value;
             const message = this.querySelector("textarea").value;
             
-            // Simple validation
             if (email && phone && interest && budget && message) {
-                alert("Thank you! Your message has been sent successfully. I will get back to you soon.");
+                showSuccessMessage("Thank you! Your message has been sent successfully. I will get back to you soon.");
                 this.reset();
             } else {
-                alert("Please fill in all required fields.");
+                showErrorMessage("Please fill in all required fields.");
             }
         });
     }
 
-    // Keyboard navigation
+    function showSuccessMessage(message) {
+        showNotification(message, "success");
+    }
+
+    function showErrorMessage(message) {
+        showNotification(message, "error");
+    }
+
+    function showNotification(message, type) {
+        const notification = document.createElement("div");
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background: ${type === "success" ? "linear-gradient(45deg, #00ff88, #00cc6a)" : "linear-gradient(45deg, #ff4757, #ff3742)"};
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.transform = "translateX(0)";
+        }, 100);
+        
+        setTimeout(() => {
+            notification.style.transform = "translateX(100%)";
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 500);
+        }, 3000);
+    }
+
+    // التنقل بلوحة المفاتيح
     document.addEventListener("keydown", function(e) {
-        // Close modals and menu with Escape key
         if (e.key === "Escape") {
             modals.forEach(modal => {
                 if (modal.classList.contains("active")) {
-                    modal.classList.remove("active");
-                    document.body.style.overflow = "auto";
+                    closeModal(modal);
                 }
             });
-            
-            // Close side menu
             closeMenu();
         }
         
-        // Carousel navigation with arrow keys (only in project detail modal)
         if (document.getElementById("projectDetailModal").classList.contains("active")) {
             if (e.key === "ArrowLeft") {
                 previousImage();
@@ -319,20 +425,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Add scroll indicator functionality
-    const scrollIndicator = document.querySelector(".scroll-indicator");
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener("click", () => {
-            const testimonialsSection = document.querySelector(".testimonial-section");
-            if (testimonialsSection) {
-                testimonialsSection.scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
-        });
-    }
-
-    // Touch support for mobile carousel
+    // دعم اللمس للأجهزة المحمولة
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -352,61 +445,407 @@ document.addEventListener("DOMContentLoaded", function() {
         if (document.getElementById("projectDetailModal").classList.contains("active")) {
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
-                    // Swipe left - next image
                     nextImage();
                 } else {
-                    // Swipe right - previous image
                     previousImage();
                 }
             }
         }
     }
 
-    // Add dynamic background effect
-    function createFloatingElements() {
-        const container = document.body;
+    // تأثيرات متقدمة
+    function initAdvancedEffects() {
+        // تأثير الجسيمات المتحركة
+        createFloatingParticles();
         
-        for (let i = 0; i < 5; i++) {
-            const element = document.createElement("div");
-            element.style.cssText = `
-                position: fixed;
-                width: ${Math.random() * 100 + 50}px;
-                height: ${Math.random() * 100 + 50}px;
-                background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 255, 0.1));
+        // تأثيرات الإضاءة
+        initGlowEffects();
+        
+        // تأثيرات الانتقال
+        initTransitionEffects();
+    }
+
+    function createFloatingParticles() {
+        const particleContainer = document.createElement("div");
+        particleContainer.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        `;
+        document.body.appendChild(particleContainer);
+
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement("div");
+            particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 4 + 2}px;
+                height: ${Math.random() * 4 + 2}px;
+                background: radial-gradient(circle, #FFD700, transparent);
                 border-radius: 50%;
-                pointer-events: none;
-                z-index: -1;
-                animation: float ${Math.random() * 10 + 10}s infinite linear;
                 left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
+                animation: particleFloat ${Math.random() * 20 + 20}s infinite linear;
+                opacity: ${Math.random() * 0.5 + 0.3};
             `;
-            container.appendChild(element);
+            particleContainer.appendChild(particle);
+        }
+
+        // إضافة CSS للحركة
+        const style = document.createElement("style");
+        style.textContent = `
+            @keyframes particleFloat {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    function initGlowEffects() {
+        const glowElements = document.querySelectorAll(".logo-icon, .timeline-dot, .star.filled");
+        glowElements.forEach(element => {
+            element.addEventListener("mouseenter", function() {
+                this.style.boxShadow = "0 0 30px #FFD700, 0 0 60px #FFD700";
+            });
+            
+            element.addEventListener("mouseleave", function() {
+                this.style.boxShadow = "";
+            });
+        });
+    }
+
+    function initTransitionEffects() {
+        const transitionElements = document.querySelectorAll(".portfolio-item, .experience-content, .testimonial-card");
+        transitionElements.forEach(element => {
+            element.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+        });
+    }
+
+    function initScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    
+                    // تأثيرات خاصة للعناصر المختلفة
+                    if (entry.target.classList.contains("experience-item")) {
+                        animateExperienceItem(entry.target);
+                    }
+                    
+                    if (entry.target.classList.contains("portfolio-item")) {
+                        animatePortfolioItem(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // مراقبة العناصر
+        const animatedElements = document.querySelectorAll(".experience-item, .portfolio-item, .testimonial-card");
+        animatedElements.forEach(el => {
+            el.classList.add("fade-in-up");
+            observer.observe(el);
+        });
+    }
+
+    function animateExperienceItem(item) {
+        const timeline = item.querySelector(".timeline-dot");
+        const content = item.querySelector(".experience-content");
+        
+        if (timeline) {
+            setTimeout(() => {
+                timeline.style.transform = "scale(1.2)";
+                timeline.style.boxShadow = "0 0 25px #FFD700";
+                
+                setTimeout(() => {
+                    timeline.style.transform = "scale(1)";
+                }, 300);
+            }, 200);
+        }
+        
+        if (content) {
+            content.style.transform = "translateX(-20px)";
+            setTimeout(() => {
+                content.style.transform = "translateX(0)";
+            }, 300);
         }
     }
 
-    // Add CSS for floating animation
-    const style = document.createElement("style");
-    style.textContent = `
-        @keyframes float {
-            0% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
+    function animatePortfolioItem(item) {
+        item.style.transform = "translateY(20px) scale(0.95)";
+        setTimeout(() => {
+            item.style.transform = "translateY(0) scale(1)";
+        }, 200);
+    }
+
+    function initParallaxEffects() {
+        let ticking = false;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll(".hero-section, .horizontal-image");
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
             }
         }
-    `;
-    document.head.appendChild(style);
 
-    // Initialize floating elements
-    createFloatingElements();
+        window.addEventListener("scroll", requestTick);
+    }
 
-    // تحسينات الأداء (Lazy Loading + Loader)
+    function initMouseFollowEffects() {
+        const cursor = document.createElement("div");
+        cursor.className = "custom-cursor";
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #FFD700, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            opacity: 0;
+        `;
+        document.body.appendChild(cursor);
+
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.left = e.clientX - 10 + "px";
+            cursor.style.top = e.clientY - 10 + "px";
+            cursor.style.opacity = "0.6";
+        });
+
+        document.addEventListener("mouseenter", () => {
+            cursor.style.opacity = "0.6";
+        });
+
+        document.addEventListener("mouseleave", () => {
+            cursor.style.opacity = "0";
+        });
+
+        // تأثيرات خاصة للعناصر التفاعلية
+        const interactiveElements = document.querySelectorAll("button, a, .portfolio-item");
+        interactiveElements.forEach(element => {
+            element.addEventListener("mouseenter", () => {
+                cursor.style.transform = "scale(2)";
+                cursor.style.background = "radial-gradient(circle, #FFD700, rgba(255, 215, 0, 0.3))";
+            });
+            
+            element.addEventListener("mouseleave", () => {
+                cursor.style.transform = "scale(1)";
+                cursor.style.background = "radial-gradient(circle, #FFD700, transparent)";
+            });
+        });
+    }
+
+    function initRippleEffects() {
+        const rippleElements = document.querySelectorAll("button, .action-btn, .nav-item");
+        
+        rippleElements.forEach(element => {
+            element.addEventListener("click", function(e) {
+                const ripple = document.createElement("span");
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: radial-gradient(circle, rgba(255, 215, 0, 0.6), transparent);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = "relative";
+                this.style.overflow = "hidden";
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // إضافة CSS للتأثير
+        const style = document.createElement("style");
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    function initPageLoader() {
+        const loader = document.createElement("div");
+        loader.className = "page-loader";
+        loader.innerHTML = `
+            <div class="loader-content">
+                <div class="loader-spinner"></div>
+                <div class="loader-logo">✦ Esam</div>
+                <div class="loader-progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        `;
+        
+        loader.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000, #111);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        `;
+        
+        document.body.appendChild(loader);
+        
+        // محاكاة التحميل
+        let progress = 0;
+        const progressBar = loader.querySelector(".progress-bar");
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
+            
+            if (progressBar) {
+                progressBar.style.width = progress + "%";
+            }
+            
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    loader.style.opacity = "0";
+                    setTimeout(() => {
+                        loader.remove();
+                        // تشغيل الحركات الأولية
+                        initInitialAnimations();
+                    }, 800);
+                }, 500);
+            }
+        }, 100);
+        
+        // إضافة أنماط التحميل
+        const loaderStyle = document.createElement("style");
+        loaderStyle.textContent = `
+            .loader-content {
+                text-align: center;
+                color: white;
+            }
+            
+            .loader-spinner {
+                width: 60px;
+                height: 60px;
+                border: 3px solid rgba(255, 255, 255, 0.1);
+                border-top-color: #FFD700;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                margin: 0 auto 30px;
+            }
+            
+            .loader-logo {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 30px;
+                background: linear-gradient(45deg, #FFD700, #DAA520);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            
+            .loader-progress {
+                width: 200px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 2px;
+                overflow: hidden;
+                margin: 0 auto;
+            }
+            
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #FFD700, #DAA520);
+                width: 0%;
+                transition: width 0.3s ease;
+                border-radius: 2px;
+            }
+            
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(loaderStyle);
+    }
+
+    function initInitialAnimations() {
+        // تحريك العناصر الأولية
+        const heroElements = document.querySelectorAll(".hero-text, .horizontal-image, .hero-footer-actions");
+        heroElements.forEach((element, index) => {
+            element.style.opacity = "0";
+            element.style.transform = "translateY(30px)";
+            
+            setTimeout(() => {
+                element.style.transition = "all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+                element.style.opacity = "1";
+                element.style.transform = "translateY(0)";
+            }, index * 200);
+        });
+    }
+
+    function smoothScrollTo(element) {
+        if (element) {
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    }
+
+    // تحسينات الأداء
     const lazyImages = document.querySelectorAll("img[data-src]");
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -417,70 +856,45 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageObserver.unobserve(img);
             }
         });
-    }, { rootMargin: "200px" }); // تحميل الصور قبل ظهورها بــ 200px
+    }, { rootMargin: "200px" });
 
     lazyImages.forEach(img => imageObserver.observe(img));
 
-    // مؤشر التحميل
-    window.addEventListener("load", function() {
-        const loader = document.createElement("div");
-        loader.className = "page-loader";
-        loader.innerHTML = `
-            <div class="loader-content">
-                <div class="loader-spinner"></div>
-                <div class="loader-logo">✦ Esam</div>
-            </div>
-        `;
-        document.body.appendChild(loader);
-        
-        setTimeout(() => {
-            loader.style.opacity = "0";
-            setTimeout(() => loader.remove(), 500);
-        }, 1000);
-    });
-
-    // تأثيرات Hover المتقدمة
-    document.querySelectorAll(".portfolio-item, .action-btn, .social-link").forEach(el => {
-        el.addEventListener("mousemove", function(e) {
-            const rect = this.getBoundingClientRect();
-            this.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
-            this.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+    // إيقاف الحركات عند عدم رؤية الصفحة
+    document.addEventListener("visibilitychange", function() {
+        const animations = document.querySelectorAll("*");
+        animations.forEach(element => {
+            if (document.hidden) {
+                element.style.animationPlayState = "paused";
+            } else {
+                element.style.animationPlayState = "running";
+            }
         });
     });
-
 });
 
-
-
 // ==================================================
-// Testimonials Slider Functionality
+// Testimonials Slider مع تحسينات متقدمة
 // ==================================================
 
-// Testimonials slider variables
 let currentTestimonialIndex = 0;
 let testimonialInterval;
 const testimonialCards = document.querySelectorAll('.testimonial-card');
 const testimonialDots = document.querySelectorAll('.dot');
-const testimonialAutoplayDelay = 5000; // 5 seconds
+const testimonialAutoplayDelay = 6000;
 
-// Initialize testimonials slider
 function initTestimonialsSlider() {
     if (testimonialCards.length === 0) return;
     
-    // Show first testimonial
     showTestimonial(0);
-    
-    // Start autoplay
     startTestimonialAutoplay();
     
-    // Add click events to dots
     testimonialDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             goToTestimonial(index);
         });
     });
     
-    // Pause autoplay on hover
     const testimonialsSection = document.querySelector('.testimonials-section');
     if (testimonialsSection) {
         testimonialsSection.addEventListener('mouseenter', pauseTestimonialAutoplay);
@@ -488,57 +902,60 @@ function initTestimonialsSlider() {
     }
 }
 
-// Show specific testimonial
 function showTestimonial(index) {
-    // Hide all testimonials
-    testimonialCards.forEach(card => {
+    testimonialCards.forEach((card, i) => {
         card.classList.remove('active');
+        card.style.transform = i < index ? 'translateX(-100%)' : i > index ? 'translateX(100%)' : 'translateX(0)';
+        card.style.opacity = i === index ? '1' : '0';
     });
     
-    // Remove active class from all dots
-    testimonialDots.forEach(dot => {
-        dot.classList.remove('active');
+    testimonialDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
     });
     
-    // Show current testimonial
     if (testimonialCards[index]) {
         testimonialCards[index].classList.add('active');
-    }
-    
-    // Activate current dot
-    if (testimonialDots[index]) {
-        testimonialDots[index].classList.add('active');
+        
+        // تأثير ظهور متقدم
+        setTimeout(() => {
+            const elements = testimonialCards[index].querySelectorAll('.author-image, .author-name, .testimonial-quote, .star');
+            elements.forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, i * 100);
+            });
+        }, 200);
     }
     
     currentTestimonialIndex = index;
 }
 
-// Go to specific testimonial
 function goToTestimonial(index) {
     pauseTestimonialAutoplay();
     showTestimonial(index);
     startTestimonialAutoplay();
 }
 
-// Go to next testimonial
 function nextTestimonial() {
     const nextIndex = (currentTestimonialIndex + 1) % testimonialCards.length;
     showTestimonial(nextIndex);
 }
 
-// Go to previous testimonial
 function previousTestimonial() {
     const prevIndex = (currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
     showTestimonial(prevIndex);
 }
 
-// Start autoplay
 function startTestimonialAutoplay() {
-    pauseTestimonialAutoplay(); // Clear any existing interval
+    pauseTestimonialAutoplay();
     testimonialInterval = setInterval(nextTestimonial, testimonialAutoplayDelay);
 }
 
-// Pause autoplay
 function pauseTestimonialAutoplay() {
     if (testimonialInterval) {
         clearInterval(testimonialInterval);
@@ -546,7 +963,7 @@ function pauseTestimonialAutoplay() {
     }
 }
 
-// Touch support for testimonials
+// دعم اللمس للشهادات
 let testimonialTouchStartX = 0;
 let testimonialTouchEndX = 0;
 
@@ -570,85 +987,24 @@ function handleTestimonialSwipe() {
     if (Math.abs(diff) > swipeThreshold) {
         pauseTestimonialAutoplay();
         if (diff > 0) {
-            // Swipe left - next testimonial
             nextTestimonial();
         } else {
-            // Swipe right - previous testimonial
             previousTestimonial();
         }
         startTestimonialAutoplay();
     }
 }
 
-// Keyboard navigation for testimonials
-document.addEventListener('keydown', function(e) {
-    // Only handle arrow keys when not in a modal
-    const activeModal = document.querySelector('.modal.active');
-    if (!activeModal) {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            goToTestimonial((currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length);
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            goToTestimonial((currentTestimonialIndex + 1) % testimonialCards.length);
-        }
-    }
-});
-
-// Initialize testimonials slider when DOM is ready
+// تهيئة الشهادات عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
-    // Add a small delay to ensure all elements are properly loaded
-    setTimeout(initTestimonialsSlider, 100);
+    setTimeout(initTestimonialsSlider, 200);
+    setTimeout(initRatingStars, 300);
 });
 
-// Pause autoplay when page is not visible
-document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-        pauseTestimonialAutoplay();
-    } else {
-        startTestimonialAutoplay();
-    }
-});
-
-// Add smooth transition effects
-function addTestimonialTransitionEffects() {
-    const style = document.createElement('style');
-    style.textContent = `
-        .testimonial-card {
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .testimonial-card:not(.active) {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        
-        .testimonial-card.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .dot {
-            transition: all 0.3s ease;
-        }
-        
-        .dot:hover {
-            transform: scale(1.2);
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Initialize transition effects
-addTestimonialTransitionEffects();
-
-
-
 // ==================================================
-// Rating Stars Functionality
+// Rating Stars مع تحسينات متقدمة
 // ==================================================
 
-// Initialize rating stars for all testimonials
 function initRatingStars() {
     const ratingContainers = document.querySelectorAll('.testimonial-rating');
     
@@ -658,11 +1014,8 @@ function initRatingStars() {
     });
 }
 
-// Generate stars based on rating
 function generateStars(container, rating) {
-    container.innerHTML = ''; // Clear existing content
-    
-    // Ensure rating is between 1 and 5
+    container.innerHTML = '';
     const validRating = Math.max(1, Math.min(5, rating));
     
     for (let i = 1; i <= 5; i++) {
@@ -674,39 +1027,47 @@ function generateStars(container, rating) {
             star.classList.add('filled');
         }
         
-        // Add click event for interactive rating (optional)
         star.addEventListener('click', function() {
             updateRating(container, i);
         });
         
-        // Add hover effects
         star.addEventListener('mouseenter', function() {
             highlightStars(container, i);
+            this.style.transform = 'scale(1.3) rotate(10deg)';
+        });
+        
+        star.addEventListener('mouseleave', function() {
+            const currentRating = parseInt(container.getAttribute('data-rating'));
+            highlightStars(container, currentRating);
+            this.style.transform = 'scale(1) rotate(0deg)';
         });
         
         container.appendChild(star);
     }
-    
-    // Reset on mouse leave
-    container.addEventListener('mouseleave', function() {
-        const currentRating = parseInt(container.getAttribute('data-rating'));
-        highlightStars(container, currentRating);
-    });
 }
 
-// Update rating when star is clicked
 function updateRating(container, newRating) {
     container.setAttribute('data-rating', newRating);
     highlightStars(container, newRating);
     
-    // Add a subtle animation effect
-    container.style.transform = 'scale(1.05)';
+    // تأثير بصري للتحديث
+    container.style.transform = 'scale(1.1)';
     setTimeout(() => {
         container.style.transform = 'scale(1)';
     }, 200);
+    
+    // تأثير صوتي بصري
+    const stars = container.querySelectorAll('.star.filled');
+    stars.forEach((star, index) => {
+        setTimeout(() => {
+            star.style.transform = 'scale(1.4)';
+            setTimeout(() => {
+                star.style.transform = 'scale(1)';
+            }, 150);
+        }, index * 50);
+    });
 }
 
-// Highlight stars up to the given rating
 function highlightStars(container, rating) {
     const stars = container.querySelectorAll('.star');
     
@@ -719,49 +1080,12 @@ function highlightStars(container, rating) {
     });
 }
 
-// Add smooth transition effects for stars
-function addStarTransitionEffects() {
-    const style = document.createElement('style');
-    style.textContent = `
-        .testimonial-rating {
-            transition: transform 0.2s ease;
-        }
-        
-        .star {
-            transition: all 0.3s ease;
-        }
-        
-        .star:hover {
-            transform: scale(1.2);
-        }
-        
-        .star.filled:hover {
-            filter: brightness(1.2);
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Initialize stars when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Add a small delay to ensure testimonials are properly loaded
-    setTimeout(() => {
-        initRatingStars();
-        addStarTransitionEffects();
-    }, 200);
-});
-
-// Re-initialize stars when testimonials change (for slider functionality)
-function reinitializeStars() {
-    setTimeout(initRatingStars, 100);
-}
-
-// Override the existing showTestimonial function to include star initialization
-const originalShowTestimonial = window.showTestimonial || showTestimonial;
+// إعادة تهيئة النجوم عند تغيير الشهادات
+const originalShowTestimonial = window.showTestimonial;
 if (typeof showTestimonial === 'function') {
     window.showTestimonial = function(index) {
         originalShowTestimonial(index);
-        reinitializeStars();
+        setTimeout(initRatingStars, 300);
     };
 }
 

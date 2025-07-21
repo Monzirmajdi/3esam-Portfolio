@@ -3,47 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Esam Ismael - Professional UI/UX Designer and Creative Director specializing in modern web design, branding, and digital experiences.">
+    <meta name="keywords" content="UI/UX Designer, Web Design, Branding, Creative Director, Portfolio, Digital Design">
+    <meta name="author" content="Esam Ismael">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Esam Ismael - Professional Portfolio">
+    <meta property="og:description" content="Professional UI/UX Designer and Creative Director specializing in modern web design and digital experiences.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Esam Ismael - Professional Portfolio">
+    <meta name="twitter:description" content="Professional UI/UX Designer and Creative Director specializing in modern web design and digital experiences.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop">
+    
     <title>Esam Ismael - Personal Portfolio</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" as="style">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+    
+    <!-- Performance Optimization -->
+    <link rel="dns-prefetch" href="//images.unsplash.com">
+    <link rel="dns-prefetch" href="//i.pravatar.cc">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="location">
-            <span class="location-dot"></span>
+            <span class="location-dot" aria-hidden="true"></span>
             <span class="location-text">Saudi Arabia / Sudan</span>
         </div>
         
         <div class="logo">
             <div class="logo-icon">
-                <div class="star-icon">✦</div>
+                <div class="star-icon" aria-hidden="true">✦</div>
             </div>
             <span class="logo-text">Esam</span>
         </div>
         
-        <button class="menu-toggle" id="menuToggle">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
             <div class="menu-grid">
-                <span class="menu-dot"></span>
-                <span class="menu-dot"></span>
-                <span class="menu-dot"></span>
-                <span class="menu-dot"></span>
+                <span class="menu-dot" aria-hidden="true"></span>
+                <span class="menu-dot" aria-hidden="true"></span>
+                <span class="menu-dot" aria-hidden="true"></span>
+                <span class="menu-dot" aria-hidden="true"></span>
             </div>
         </button>
     </header>
 
     <!-- Side Menu -->
-    <div class="side-menu" id="sideMenu">
+    <nav class="side-menu" id="sideMenu" role="navigation" aria-label="Main navigation">
         <div class="menu-content">
             <div class="menu-header">
                 <h3>Menu</h3>
-                <span class="close-btn" id="sideMenuCloseBtn">&times;</span>
+                <button class="close-btn" id="sideMenuCloseBtn" aria-label="Close menu">&times;</button>
             </div>
             
-            <nav class="menu-nav">
+            <div class="menu-nav">
                 <div class="nav-section">
-                    <a href="#" class="nav-item" data-section="home">
-                        <span class="nav-icon">
+                    <a href="#home" class="nav-item" data-section="home" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                                 <polyline points="9,22 9,12 15,12 15,22"/>
@@ -51,16 +82,16 @@
                         </span>
                         <span class="nav-text">HOME</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="portfolio">
-                        <span class="nav-icon">
+                    <a href="#portfolio" class="nav-item" data-section="portfolio" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
                             </svg>
                         </span>
                         <span class="nav-text">PORTFOLIO</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="services">
-                        <span class="nav-icon">
+                    <a href="#services" class="nav-item" data-section="services" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="3"/>
                                 <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
@@ -68,16 +99,16 @@
                         </span>
                         <span class="nav-text">SERVICES</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="skills">
-                        <span class="nav-icon">
+                    <a href="#skills" class="nav-item" data-section="skills" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="12,2 15.09,8.26 22,9 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9 8.91,8.26"/>
                             </svg>
                         </span>
                         <span class="nav-text">SKILLS</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="faqs">
-                        <span class="nav-icon">
+                    <a href="#faqs" class="nav-item" data-section="faqs" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
                                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
@@ -89,8 +120,8 @@
                 </div>
                 
                 <div class="nav-section">
-                    <a href="#" class="nav-item" data-section="experience">
-                        <span class="nav-icon">
+                    <a href="#experience" class="nav-item" data-section="experience" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                 <line x1="8" y1="21" x2="16" y2="21"/>
@@ -99,8 +130,8 @@
                         </span>
                         <span class="nav-text">EXPERIENCE</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="awards">
-                        <span class="nav-icon">
+                    <a href="#awards" class="nav-item" data-section="awards" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="8" r="7"/>
                                 <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
@@ -108,16 +139,16 @@
                         </span>
                         <span class="nav-text">AWARDS</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="testimonial">
-                        <span class="nav-icon">
+                    <a href="#testimonial" class="nav-item" data-section="testimonial" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                             </svg>
                         </span>
                         <span class="nav-text">TESTIMONIAL</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="pricing">
-                        <span class="nav-icon">
+                    <a href="#pricing" class="nav-item" data-section="pricing" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="12" y1="1" x2="12" y2="23"/>
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
@@ -125,8 +156,8 @@
                         </span>
                         <span class="nav-text">PRICING</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="contact">
-                        <span class="nav-icon">
+                    <a href="#contact" class="nav-item" data-section="contact" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
@@ -136,48 +167,50 @@
                     </a>
                 </div>
             </nav>
-            
-
         </div>
-    </div>
+    </nav>
 
     <!-- Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <div class="hero-section">
+    <main class="main-content" role="main">
+        <section class="hero-section" id="home">
             <div class="hero-text">
                 <div class="greeting">Hello my name is</div>
                 <h1 class="main-name">
-                    <span class="first-name">Esam</span>
+                    <span class="first-name" data-text="Esam">Esam</span>
                     <span class="last-name">Ismael</span>
                 </h1>
             </div>
             
             <!-- فاصل جديد -->
-            <div class="hero-separator section-separator"></div>
+            <div class="hero-separator section-separator" aria-hidden="true"></div>
             
             <!-- الصورة الأفقية -->
             <div class="horizontal-image">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop" alt="Esam Ismael">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop" 
+                     alt="Esam Ismael - Professional UI/UX Designer" 
+                     loading="eager"
+                     width="1200" 
+                     height="400">
             </div>
             
             <!-- نص التمرير وأزرار الحركة في سطر واحد -->
             <div class="hero-footer-actions">
                 <div class="scroll-text">Scroll down!</div>
                 <div class="action-buttons">
-                    <a href="#" class="action-btn" data-section="portfolio">View My Works →</a>
-                    <a href="#" class="action-btn" data-section="contact">Contact Me →</a>
+                    <a href="#portfolio" class="action-btn" data-section="portfolio">View My Works →</a>
+                    <a href="#contact" class="action-btn" data-section="contact">Contact Me →</a>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <div class="section-separator"></div>
+    <div class="section-separator" aria-hidden="true"></div>
 
     <!-- EXPERIENCE SECTION -->
-    <section class="experience-section">
+    <section class="experience-section" id="experience">
         <div class="section-header">
             <h2 class="section-title">Experience</h2>
             <p class="section-subtitle">My professional journey and achievements</p>
@@ -185,10 +218,10 @@
         
         <div class="experience-container">
             <!-- Experience Item 1 -->
-            <div class="experience-item">
+            <article class="experience-item">
                 <div class="experience-timeline">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-line"></div>
+                    <div class="timeline-dot" aria-hidden="true"></div>
+                    <div class="timeline-line" aria-hidden="true"></div>
                 </div>
                 <div class="experience-content">
                     <div class="experience-period">2023 - Present</div>
@@ -204,13 +237,13 @@
                         and mentoring junior designers. Responsible for user research, prototyping, and ensuring design consistency across products.
                     </p>
                 </div>
-            </div>
+            </article>
 
             <!-- Experience Item 2 -->
-            <div class="experience-item">
+            <article class="experience-item">
                 <div class="experience-timeline">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-line"></div>
+                    <div class="timeline-dot" aria-hidden="true"></div>
+                    <div class="timeline-line" aria-hidden="true"></div>
                 </div>
                 <div class="experience-content">
                     <div class="experience-period">2022 - 2023</div>
@@ -226,12 +259,12 @@
                         Successfully launched 15+ brand campaigns with measurable impact on client engagement and sales.
                     </p>
                 </div>
-            </div>
+            </article>
 
             <!-- Experience Item 3 -->
-            <div class="experience-item">
+            <article class="experience-item">
                 <div class="experience-timeline">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot" aria-hidden="true"></div>
                 </div>
                 <div class="experience-content">
                     <div class="experience-period">2020 - 2022</div>
@@ -247,117 +280,147 @@
                         Collaborated with development teams to ensure pixel-perfect implementation of designs.
                     </p>
                 </div>
+            </article>
+        </div>
+    </section>
+
+    <div class="section-separator" aria-hidden="true"></div>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Testimonials</h2>
+            <p class="section-subtitle">What my clients say about me</p>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonials-container">
+                <!-- Testimonial 1 -->
+                <article class="testimonial-card active">
+                    <div class="testimonial-header">
+                        <img src="https://i.pravatar.cc/150?img=1" 
+                             alt="Jay Coco Charlotte" 
+                             class="author-image"
+                             loading="lazy"
+                             width="150" 
+                             height="150">
+                        <div class="author-info">
+                            <p class="author-name">JAY COCO CHARLOTTE</p>
+                            <p class="author-title">Founder, Freibührener</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating" data-rating="5" aria-label="5 star rating">
+                        <!-- Stars will be generated here by JavaScript -->
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        "Working with Esam was a game-changer. His UI/UX design expertise transformed our clunky platform into a smooth, intuitive experience that our users love."
+                    </blockquote>
+                </article>
+                
+                <!-- Testimonial 2 -->
+                <article class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://i.pravatar.cc/150?img=2" 
+                             alt="Alex Rivera" 
+                             class="author-image"
+                             loading="lazy"
+                             width="150" 
+                             height="150">
+                        <div class="author-info">
+                            <p class="author-name">Alex Rivera</p>
+                            <p class="author-title">CEO, Tech Innovators</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating" data-rating="4" aria-label="4 star rating">
+                        <!-- Stars will be generated here by JavaScript -->
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        "Esam is a true professional. He delivered a stunning brand identity that perfectly captured our vision. The results exceeded all our expectations."
+                    </blockquote>
+                </article>
+                
+                <!-- Testimonial 3 -->
+                <article class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://i.pravatar.cc/150?img=3" 
+                             alt="Samantha Lee" 
+                             class="author-image"
+                             loading="lazy"
+                             width="150" 
+                             height="150">
+                        <div class="author-info">
+                            <p class="author-name">Samantha Lee</p>
+                            <p class="author-title">Marketing Director, Creative Solutions</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating" data-rating="5" aria-label="5 star rating">
+                        <!-- Stars will be generated here by JavaScript -->
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        "The motion design Esam created for our website was exceptional. It added a layer of sophistication and engagement that has significantly boosted our traffic."
+                    </blockquote>
+                </article>
+            </div>
+            
+            <!-- Navigation Dots -->
+            <div class="testimonial-dots" role="tablist" aria-label="Testimonial navigation">
+                <button class="dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Show testimonial 1"></button>
+                <button class="dot" data-slide="1" role="tab" aria-selected="false" aria-label="Show testimonial 2"></button>
+                <button class="dot" data-slide="2" role="tab" aria-selected="false" aria-label="Show testimonial 3"></button>
             </div>
         </div>
     </section>
 
-    <div class="section-separator"></div>
-
-    <!-- TESTIMONIALS SECTION -->
-<section class="testimonials-section">
-    <div class="section-header">
-        <h2 class="section-title">Testimonials</h2>
-        <p class="section-subtitle">What my clients say about me</p>
-    </div>
-    <div class="testimonials-slider">
-        <div class="testimonials-container">
-            <!-- Testimonial 1 -->
-            <div class="testimonial-card active">
-                <div class="testimonial-header">
-                    <img src="https://i.pravatar.cc/150?img=1" alt="Jay Coco Charlotte" class="author-image">
-                    <div class="author-info">
-                        <p class="author-name">JAY COCO CHARLOTTE</p>
-                        <p class="author-title">Founder, Freibührener</p>
-                    </div>
-                </div>
-                <div class="testimonial-rating" data-rating="5">
-                    <!-- Stars will be generated here by JavaScript -->
-                </div>
-                <blockquote class="testimonial-quote">
-                    "Working with Esam was a game-changer. His UI/UX design expertise transformed our clunky platform into a smooth, intuitive experience that our users love."
-                </blockquote>
-            </div>
-            <!-- Testimonial 2 -->
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://i.pravatar.cc/150?img=2" alt="Alex Rivera" class="author-image">
-                    <div class="author-info">
-                        <p class="author-name">Alex Rivera</p>
-                        <p class="author-title">CEO, Tech Innovators</p>
-                    </div>
-                </div>
-                <div class="testimonial-rating" data-rating="4">
-                    <!-- Stars will be generated here by JavaScript -->
-                </div>
-                <blockquote class="testimonial-quote">
-                    "Esam is a true professional. He delivered a stunning brand identity that perfectly captured our vision. The results exceeded all our expectations."
-                </blockquote>
-            </div>
-            <!-- Testimonial 3 -->
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://i.pravatar.cc/150?img=3" alt="Samantha Lee" class="author-image">
-                    <div class="author-info">
-                        <p class="author-name">Samantha Lee</p>
-                        <p class="author-title">Marketing Director, Creative Solutions</p>
-                    </div>
-                </div>
-                <div class="testimonial-rating" data-rating="5">
-                    <!-- Stars will be generated here by JavaScript -->
-                </div>
-                <blockquote class="testimonial-quote">
-                    "The motion design Esam created for our website was exceptional. It added a layer of sophistication and engagement that has significantly boosted our traffic."
-                </blockquote>
-            </div>
-        </div>
-        <!-- Navigation Dots -->
-        <div class="testimonial-dots">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
-            <span class="dot" data-slide="2"></span>
-        </div>
-    </div>
-</section>
-
     <!-- Portfolio Modal -->
-    <div class="modal" id="portfolioModal">
+    <div class="modal" id="portfolioModal" role="dialog" aria-labelledby="portfolioTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close-btn" data-modal="portfolioModal">&times;</span>
-            <h2>My Work</h2>
+            <button class="close-btn" data-modal="portfolioModal" aria-label="Close portfolio">&times;</button>
+            <h2 id="portfolioTitle">My Work</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item" data-project-id="0">
-                    <img data-src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Project 1" loading="lazy">
+                <article class="portfolio-item" data-project-id="0">
+                    <img data-src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" 
+                         alt="Runes Studio Web Design Project" 
+                         loading="lazy"
+                         width="400" 
+                         height="300">
                     <div class="portfolio-tags">
                         <span class="tag">UI/UX</span>
                         <span class="tag">Visual Identity</span>
                         <span class="tag">Art Direction</span>
                     </div>
                     <h3>Runes Studio Web Design</h3>
-                </div>
-                <div class="portfolio-item" data-project-id="1">
-                    <img data-src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=400&h=300&fit=crop" alt="Project 2" loading="lazy">
+                </article>
+                <article class="portfolio-item" data-project-id="1">
+                    <img data-src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=400&h=300&fit=crop" 
+                         alt="Swiss App Design Project" 
+                         loading="lazy"
+                         width="400" 
+                         height="300">
                     <div class="portfolio-tags">
                         <span class="tag">UI/UX</span>
                         <span class="tag">Visual Identity</span>
                     </div>
                     <h3>Swiss App Design</h3>
-                </div>
-                <div class="portfolio-item" data-project-id="2">
-                    <img data-src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=300&fit=crop" alt="Project 3" loading="lazy">
+                </article>
+                <article class="portfolio-item" data-project-id="2">
+                    <img data-src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=300&fit=crop" 
+                         alt="Bruno Portfolio Website Project" 
+                         loading="lazy"
+                         width="400" 
+                         height="300">
                     <div class="portfolio-tags">
                         <span class="tag">UI/UX</span>
                         <span class="tag">Motion Design</span>
                     </div>
                     <h3>Bruno Portfolio Website</h3>
-                </div>
+                </article>
             </div>
         </div>
     </div>
 
     <!-- Project Detail Modal -->
-    <div class="modal" id="projectDetailModal">
+    <div class="modal" id="projectDetailModal" role="dialog" aria-labelledby="projectDetailTitle" aria-hidden="true">
         <div class="modal-content project-detail-content">
-            <span class="close-btn" data-modal="projectDetailModal">&times;</span>
+            <button class="close-btn" data-modal="projectDetailModal" aria-label="Close project details">&times;</button>
             <div class="project-detail" id="projectDetail">
                 <!-- Project details will be populated by JavaScript -->
             </div>
@@ -365,10 +428,10 @@
     </div>
 
     <!-- Contact Modal -->
-    <div class="modal" id="contactModal">
+    <div class="modal" id="contactModal" role="dialog" aria-labelledby="contactTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close-btn" data-modal="contactModal">&times;</span>
-            <h2>Contact Me</h2>
+            <button class="close-btn" data-modal="contactModal" aria-label="Close contact form">&times;</button>
+            <h2 id="contactTitle">Contact Me</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
@@ -385,23 +448,23 @@
                     </div>
                 </div>
                 
-                <form class="contact-form">
+                <form class="contact-form" novalidate>
                     <h3>Send Message</h3>
-                    <input type="text" placeholder="Your Email" required>
-                    <input type="tel" placeholder="Your Phone" required>
-                    <select required>
+                    <input type="email" placeholder="Your Email" required aria-label="Your email address">
+                    <input type="tel" placeholder="Your Phone" required aria-label="Your phone number">
+                    <select required aria-label="Service interest">
                         <option value="">I'm interested in...</option>
                         <option value="ui-ux">UI/UX Design</option>
                         <option value="branding">Branding</option>
                         <option value="web-design">Web Design</option>
                     </select>
-                    <select required>
+                    <select required aria-label="Project budget">
                         <option value="">Your Budget</option>
                         <option value="5k-10k">$5k - $10k</option>
                         <option value="10k-25k">$10k - $25k</option>
                         <option value="25k+">$25k+</option>
                     </select>
-                    <textarea placeholder="More About The Project" rows="4" required></textarea>
+                    <textarea placeholder="More About The Project" rows="4" required aria-label="Project description"></textarea>
                     <button type="submit">Send Message</button>
                 </form>
             </div>
@@ -409,7 +472,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-content">
             <div class="footer-left">
                 <p class="footer-signature">© 2024 Esam Ismael. All rights reserved.</p>
@@ -418,7 +481,7 @@
             <div class="footer-center">
                 <div class="footer-logo">
                     <div class="logo-icon">
-                        <div class="star-icon">✦</div>
+                        <div class="star-icon" aria-hidden="true">✦</div>
                     </div>
                     <span class="logo-text">Esam</span>
                 </div>
@@ -426,12 +489,12 @@
             
             <div class="footer-right">
                 <div class="footer-social">
-                    <a href="#" class="footer-social-link" aria-label="Twitter">
+                    <a href="#" class="footer-social-link" aria-label="Follow on Twitter">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                         </svg>
                     </a>
-                    <a href="#" class="footer-social-link" aria-label="Dribbble">
+                    <a href="#" class="footer-social-link" aria-label="View on Dribbble">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
                             <circle cx="12" cy="12" r="4"/>
@@ -440,14 +503,14 @@
                             <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
                         </svg>
                     </a>
-                    <a href="#" class="footer-social-link" aria-label="Instagram">
+                    <a href="#" class="footer-social-link" aria-label="Follow on Instagram">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                         </svg>
                     </a>
-                    <a href="#" class="footer-social-link" aria-label="LinkedIn">
+                    <a href="#" class="footer-social-link" aria-label="Connect on LinkedIn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                             <rect x="2" y="9" width="4" height="12"/>
@@ -459,8 +522,19 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
+    
+    <!-- Performance Monitoring -->
+    <script>
+        // Simple performance monitoring
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log('Page load time:', loadTime + 'ms');
+            }
+        });
+    </script>
 </body>
 </html>
-
 
