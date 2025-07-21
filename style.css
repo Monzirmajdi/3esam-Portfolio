@@ -1829,3 +1829,43 @@ button,
 }
 
 
+
+
+/* تعديلات لوضع الاسم فوق الصورة في الجزء الشمالي السفلي */
+.hero-section {
+    position: relative; /* لتمكين تحديد المواقع المطلقة للعناصر الفرعية */
+    overflow: hidden; /* لإخفاء أي محتوى يتجاوز حدود القسم */
+}
+
+.horizontal-image {
+    position: relative; /* لتمكين تحديد المواقع المطلقة للعناصر الفرعية */
+    width: 100%;
+    height: auto;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 5%; /* ضبط المسافة من الأسفل */
+    left: 5%; /* ضبط المسافة من اليسار */
+    z-index: 5; /* التأكد من ظهور الاسم فوق الصورة */
+    color: var(--text-primary); /* لون النص */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* ظل للنص لتحسين الرؤية */
+}
+
+.main-name {
+    font-size: 4em; /* حجم الخط للأسماء */
+    line-height: 0.9; /* تباعد الأسطر */
+    margin-bottom: 10px;
+}
+
+.first-name {
+    color: var(--primary-gold); /* لون الاسم الأول */
+    display: block;
+}
+
+.last-name {
+    color: var(--text-primary); /* لون الاسم الأخير */
+    display: block;
+}
+
+
