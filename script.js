@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
     const menuOverlay = document.getElementById("menuOverlay");
+    const sideMenuCloseBtn = document.getElementById("sideMenuCloseBtn");
     const navItems = document.querySelectorAll(".nav-item");
     const actionBtns = document.querySelectorAll(".action-btn");
     const modals = document.querySelectorAll(".modal");
@@ -68,6 +69,13 @@ document.addEventListener("DOMContentLoaded", function() {
     menuOverlay.addEventListener("click", function() {
         closeMenu();
     });
+
+    // Close menu when clicking the close button
+    if (sideMenuCloseBtn) {
+        sideMenuCloseBtn.addEventListener("click", function() {
+            closeMenu();
+        });
+    }
 
     // Function to toggle menu
     function toggleMenu() {

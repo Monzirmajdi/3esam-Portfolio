@@ -134,11 +134,42 @@ body {
     flex-direction: column;
 }
 
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
 .menu-header h3 {
     color: #fff;
     font-size: 24px;
-    margin-bottom: 40px;
+    margin: 0;
     font-weight: 600;
+}
+
+.menu-header .close-btn {
+    position: static;
+    margin: 0;
+    font-size: 30px;
+    cursor: pointer;
+    color: #888;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-header .close-btn:hover {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+    transform: rotate(90deg);
 }
 
 .menu-nav {
