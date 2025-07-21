@@ -215,7 +215,7 @@ body {
 }
 
 .social-section {
-    margin-top: 60px;
+    margin-top: 30px;
     padding-top: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -290,7 +290,7 @@ body {
     padding: 40px;
     text-align: left;
     min-height: calc(100vh - 160px);
-    margin-bottom: 120px;
+    margin-bottom: 60px;
     padding-left: 0; /* إضافة هذه الخاصية لإزالة المسافة البادئة */
 }
 
@@ -905,7 +905,7 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
         padding: 20px;
         text-align: left;
         align-items: flex-start;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
     }
     
     .hero-text {
@@ -921,7 +921,7 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
     }
     
     .horizontal-image {
-        margin: 0 auto 60px;
+        margin: 0 auto 30px;
     }
     
     .hero-footer-actions {
@@ -1200,7 +1200,7 @@ img {
    ================================================== */
 
 .testimonials-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
     background: #050505; /* لون خلفية داكن قليلاً للتباين */
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
