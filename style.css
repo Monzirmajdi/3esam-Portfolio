@@ -587,10 +587,12 @@ body::after {
 }
 
 .hero-footer-actions .scroll-text::after {
-    content: '↓';
-    margin-left: 10px;
-    animation: bounce 2s infinite;
-    color: var(--primary-gold);
+    content: 
+    margin-left: 0px;
+    animation: none;
+    color: unset;
+    display: block;
+    text-align: left;
 }
 
 @keyframes bounce {
@@ -1889,7 +1891,7 @@ button,
 
 .hero-footer-actions .scroll-text {
     color: var(--text-primary);
-    font-size: 0.9em;
+    font-size: 0.8em;
     margin-bottom: 5px;
 }
 
