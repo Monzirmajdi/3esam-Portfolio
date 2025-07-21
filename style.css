@@ -54,7 +54,7 @@ body {
 .logo-icon {
     width: 32px;
     height: 32px;
-    background: linear-gradient(45deg, #FFD700, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #DAA520);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -284,7 +284,7 @@ body {
 }
 
 .first-name {
-    background: linear-gradient(45deg, #FFD700, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #DAA520);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -365,7 +365,7 @@ body {
 }
 
 .name-alexander {
-    background: linear-gradient(45deg, #FFD700, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #DAA520);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -612,7 +612,7 @@ body {
 .modal-content h2 {
     font-size: 3rem;
     margin-bottom: 40px;
-    background: linear-gradient(45deg, #FFD700, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #DAA520);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -805,7 +805,7 @@ body {
 }
 
 .contact-form button {
-    background: linear-gradient(45deg, #FFD700, #00ccff);
+    background: linear-gradient(45deg, #FFD700, #DAA520);
     color: #000;
     border: none;
     padding: 15px 30px;
@@ -978,26 +978,28 @@ button, .nav-item, .action-btn, .social-link, .social-icon-link, .portfolio-item
     }
     
     .hero-footer-actions {
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-        text-align: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
     
     .hero-footer-actions .scroll-text {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
     }
     
     .hero-footer-actions .action-buttons {
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
-        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .action-btn {
-        font-size: 0.9rem;
-        text-align: center;
-        width: 100%;
+        font-size: 0.8rem;
+        padding: 6px 10px;
+        white-space: nowrap;
     }
     
     .modal-content h2 {
