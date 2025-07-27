@@ -540,11 +540,8 @@ body::after {
 }
 
 .horizontal-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: var(--transition-smooth);
-    filter: grayscale(20%) contrast(110%);
+    height: 100vh;
+    object-fit: cover;
 }
 
 .horizontal-image:hover img {
